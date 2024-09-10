@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rm:
+    build: ./
+    ports:
+     - "20001:50051"
+    environment:
+      - SERVICE_IP=192.168.177.122
+      - SERVICE_PORT=20001
+      - NACOS_IP=192.168.177.110
+      - NACOS_PORT=55078

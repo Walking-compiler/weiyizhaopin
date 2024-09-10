@@ -1,0 +1,105 @@
+syntax = "proto3";
+//生成文件所在包名
+option java_package = "com.glimmer.protobuf";
+//生成的java文件名
+option java_outer_classname = "grpcServiceProto";
+
+service GrpcService {
+  rpc getDifference(DifferenceRequest) returns (DifferenceResponse) {}
+  rpc GetRecommendJob (GetRecommendJobRequest) returns (GetRecommendJobResponse) {}
+  rpc ExtractResume (ExtractResumeRequest) returns (ExtractResumeResponse) {}
+
+}
+message JobAndCompany {
+  string companyName = 1;
+  string jobName = 2;
+}
+
+message DifferenceRequest {
+  int32 code = 1;
+  int64 userid = 2;
+  string message = 3;
+    JobAndCompany jobAndName = 4;
+}
+
+message DifferenceResponse {
+  int32 code = 1;
+  int64 userid = 2;
+  string message = 3;
+  string data = 4;
+}
+
+message GetRecommendJobRequest {
+
+  int64 userId = 1;
+  int32 code = 2;
+  string message = 3;
+}
+
+message Job {
+  int64 jobId = 1;
+  string jobName = 2;
+  string jobDesc = 3;
+  string jobType = 4;
+  string jobSalary = 5;
+  string jobLocation = 6;
+  string jobExperience = 7;
+  string jobEducation = 8;
+  string jobSkill = 9;
+  int64  companyId = 10;
+  string jobCompany = 11;
+  string jobCompanyDesc = 12;
+  string jobCompanyLocation = 13;
+  string jobCompanyScale = 14;
+  string jobCompanyIndustry = 15;
+  string jobMatchPercent = 16;
+
+}
+
+message GetRecommendJobResponse {
+
+  repeated Job jobs = 1;
+  int64 userId = 2;
+  int32 code = 3;
+  string message = 4;
+}
+
+
+message UserInfo {
+  int64 userId = 1;
+  string skills = 2;
+  string projects = 3;
+  string internshipExperience = 4;
+  //  期望职位
+  string desiredPosition = 5;
+  string education = 6;
+  string workExperience = 7;
+  string desiredSalary = 8;
+  string locationPreference = 9;
+  string certificate = 10;
+  string professionalSummary = 11;
+  string linkedinProfile = 12;
+  string educationExperience = 13;
+  string email = 14;
+  string phone = 15;
+  string sex = 16;
+  string birthday = 17;
+  string name = 18;
+
+}
+
+message ExtractResumeRequest {
+  int32 code = 1;
+  string message = 2;
+  int64 userId = 3;
+
+}
+
+message ExtractResumeResponse {
+  int32 code = 1;
+  string message = 2;
+  int64 userId = 3;
+  UserInfo userInfo = 4;
+}
+
+
